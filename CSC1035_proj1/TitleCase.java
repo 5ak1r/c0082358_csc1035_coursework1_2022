@@ -1,6 +1,6 @@
 // I got this code from StackOverflow at the following link:
 //https://stackoverflow.com/questions/1086123/is-there-a-method-for-string-conversion-to-title-case
-package AuctionHouse;
+package CSC1035_proj1;
 
 public final class TitleCase {
 

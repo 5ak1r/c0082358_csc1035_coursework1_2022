@@ -1,4 +1,5 @@
-package AuctionHouse;
+package CSC1035_proj1;
+
 import java.time.Year;
 
 public class Item {
@@ -89,6 +90,7 @@ public class Item {
                     this.item_type = item_type;
                 }
             }*/
+
         switch(item_type) {
             case "f":
             case "furniture":
