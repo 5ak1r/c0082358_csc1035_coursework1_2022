@@ -1,5 +1,10 @@
+package AuctionHouse;
+import java.time.Year;
 
 public class Item {
+    //Making variables private
+    //Float chosen over double as they are take up less storage, and we do not need 64-bit
+    //floating points in this project
     private int lot_number;
     private String buyer_name;
     private float price_sold;
@@ -14,6 +19,7 @@ public class Item {
         setItemType(item_type);
     }
 
+    //Setters and Getters
     public void setLotNumber(int lot_number) {
         //Verifies input for lot_number; should be 6 digits starting with a 1
 
@@ -36,26 +42,49 @@ public class Item {
         if (!(buyer_name.contains(" "))) {
             throw new IllegalArgumentException("That is not a valid name; must contain a first and last name.");
         } else {
-            this.buyer_name = ;
+            this.buyer_name = TitleCase.toTitleCase(buyer_name);
+        }
+    }
+
+    public void setPriceSold(float price_sold) {
+        //Verifies input for price_sold; should be positive and only two decimal places - rounds down if otherwise
+        //This is due to the possibility of accidentally typing more numbers than intended; if >5 would normally round
+        //Up but more likely to be a typo
+        if (price_sold < 0) {
+            throw new IllegalArgumentException("An item cannot be sold for a negative amount");
+        } else {
+            this.price_sold = (float) (Math.floor(price_sold*100)/100);
+        }
+    }
+
+    public void setYearSold(int year_sold) {
+        //Verifies input for year_sold, should be greater than 1950 (this is the year I decided) and less than or
+        //equal to the current year
+        int year = Year.now().getValue();
+        if (!(1950 <= year_sold || year_sold <= year)) {
+            throw new IllegalArgumentException("That is not a valid year.");
+        } else {
+            this.year_sold = year_sold;
         }
     }
 
     public void setItemType(String item_type) {
             //Verifies input for item_type; should be either 'f', 'p', 's' or the full words.
             if (item_type.length() == 1) {
-                if (!(item_type.toLowerCase() == "f" || item_type.toLowerCase() == "p" || item_type.toLowerCase() == "s")) {
+                if (!(item_type.equalsIgnoreCase("f") || item_type.equalsIgnoreCase("p") ||
+                        item_type.equalsIgnoreCase("s"))) {
                     throw new IllegalArgumentException("That is not a valid item type.");
                 } else {
                     this.item_type = item_type;
                 }
             } else {
-                if (!(item_type.toLowerCase() == "furniture" || item_type.toLowerCase() == "sculpture" ||
-                        item_type.toLowerCase() == "painting")) {
+                if (!(item_type.equalsIgnoreCase("furniture") || item_type.equalsIgnoreCase("sculpture") ||
+                        item_type.equalsIgnoreCase("painting"))) {
                     throw new IllegalArgumentException("That is not a valid item type.");
 
                 } else {
                     this.item_type = item_type;
                 }
             }
-        }
+    }
 }
