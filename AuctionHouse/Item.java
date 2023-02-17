@@ -19,8 +19,8 @@ public class Item {
         setItemType(item_type);
     }
 
-    //Setters and Getters
-    public void setLotNumber(int lot_number) {
+    //Setters
+    public void setLotNumber(int lot_number) throws IllegalArgumentException {
         //Verifies input for lot_number; should be 6 digits starting with a 1
 
         // Originally started with this, realized I could have done it in a lot easier way as shown below
@@ -37,7 +37,7 @@ public class Item {
         }
     }
 
-    public void setBuyerName(String buyer_name) {
+    public void setBuyerName(String buyer_name) throws IllegalArgumentException {
         //Verifies input for buyer_name; should be two words separated by a space (first name and last name)
         if (!(buyer_name.contains(" "))) {
             throw new IllegalArgumentException("That is not a valid name; must contain a first and last name.");
@@ -46,7 +46,7 @@ public class Item {
         }
     }
 
-    public void setPriceSold(float price_sold) {
+    public void setPriceSold(float price_sold) throws IllegalArgumentException {
         //Verifies input for price_sold; should be positive and only two decimal places - rounds down if otherwise
         //This is due to the possibility of accidentally typing more numbers than intended; if >5 would normally round
         //Up but more likely to be a typo
@@ -57,7 +57,7 @@ public class Item {
         }
     }
 
-    public void setYearSold(int year_sold) {
+    public void setYearSold(int year_sold) throws IllegalArgumentException {
         //Verifies input for year_sold, should be greater than 1950 (this is the year I decided) and less than or
         //equal to the current year
         int year = Year.now().getValue();
@@ -68,8 +68,11 @@ public class Item {
         }
     }
 
-    public void setItemType(String item_type) {
-            //Verifies input for item_type; should be either 'f', 'p', 's' or the full words.
+    public void setItemType(String item_type) throws IllegalArgumentException {
+        //Verifies input for item_type; should be either 'f', 'p', 's' or the full words.
+        //Previous strategy did not work as it creates more possible outputs for getItemType rather than just 3; new
+        //switch case method fixes this. Old code kept in to show comparison
+        /*
             if (item_type.length() == 1) {
                 if (!(item_type.equalsIgnoreCase("f") || item_type.equalsIgnoreCase("p") ||
                         item_type.equalsIgnoreCase("s"))) {
@@ -85,6 +88,43 @@ public class Item {
                 } else {
                     this.item_type = item_type;
                 }
-            }
+            }*/
+        switch(item_type) {
+            case "f":
+            case "furniture":
+                this.item_type = "furniture";
+                break;
+            case "p":
+            case "painting":
+                this.item_type = "painting";
+                break;
+            case "s":
+            case "sculpture":
+                this.item_type = "sculpture";
+                break;
+            default:
+                throw new IllegalArgumentException("That is not a valid item_type");
+        }
+    }
+
+    //Getters
+    public int getLotNumber() {
+        return this.lot_number;
+    }
+
+    public String getBuyerName() {
+        return this.buyer_name;
+    }
+
+    public float getPriceSold(){
+        return this.price_sold;
+    }
+
+    public int getYearSold(){
+        return this.year_sold;
+    }
+
+    public String getItemType(){
+        return this.item_type;
     }
 }
