@@ -33,4 +33,47 @@ public class AuctionHouse {
     public void addItem(Item item) {
         this.items_sold.add(item);
     }
+
+    //Returns the most expensive Item and the price it sold for
+    public Item highestPrice() {
+        //Initiating variables that return name and price of most expensive item
+        Item highest_item = new Item(199999, "",0,2000,"");
+
+        for (Item price: getItemsSold()) {
+            if (price.getPriceSold() > highest_item.getPriceSold()) {
+                highest_item = price;
+            }
+        }
+
+        return highest_item;
+    }
+
+    //Returns the average item price recorded by the auction house in the given year
+    public float averagePrice(int year) {
+        int counter = 0;
+        float sum = 0;
+
+        for (Item average: getItemsSold()) {
+            if (average.getYearSold() == year) {
+                sum += average.getPriceSold();
+                counter += 1;
+            }
+        }
+
+        return(sum / counter);
+    }
+
+    //Returns a list of all items sold by the auction house with a price greater than a given amount of money
+    public ArrayList<Float> priceGreater(float value) {
+        ArrayList<Float> items_greater = new ArrayList<>();
+
+        for (Item price: getItemsSold()) {
+            if (price.getPriceSold() > value) {
+                items_greater.add(price.getPriceSold());
+            }
+        }
+
+        return items_greater;
+    }
 }
+
