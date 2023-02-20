@@ -12,6 +12,7 @@ public class Item {
     private int year_sold;
     private String item_type;
 
+    //Constructor
     public Item(int lot_number, String buyer_name, float price_sold, int year_sold, String item_type) {
         setLotNumber(lot_number);
         setBuyerName(buyer_name);

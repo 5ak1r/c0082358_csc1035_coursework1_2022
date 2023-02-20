@@ -1,11 +1,13 @@
 package CSC1035_proj1;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AuctionHouse {
     private String name;
     private ArrayList<Item> items_sold;
 
+    //Constructor
     public AuctionHouse(String name) {
         setName(name);
         setItemsSold(new ArrayList<Item>());
@@ -37,6 +39,7 @@ public class AuctionHouse {
     //Returns the most expensive Item and the price it sold for
     public Item highestPrice() {
         //Initiating variables that return name and price of most expensive item
+        //Temporary Item with 0 price to begin comparison
         Item highest_item = new Item(199999, "",0,2000,"");
 
         for (Item price: getItemsSold()) {
@@ -64,12 +67,12 @@ public class AuctionHouse {
     }
 
     //Returns a list of all items sold by the auction house with a price greater than a given amount of money
-    public ArrayList<Float> priceGreater(float value) {
-        ArrayList<Float> items_greater = new ArrayList<>();
+    public ArrayList<Item> priceGreater(float value) {
+        ArrayList<Item> items_greater = new ArrayList<>();
 
         for (Item price: getItemsSold()) {
             if (price.getPriceSold() > value) {
-                items_greater.add(price.getPriceSold());
+                items_greater.add(price);
             }
         }
 
