@@ -5,37 +5,58 @@ import java.util.Scanner;
 
 public class ReportingIO {
 
+    //Calls the main menu every time a method has finished until the user tells the program to exit
     public static void main() {
         while(true) {
             mainMenu();
         }
     }
 
+    //Main menu
     public static void mainMenu() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         System.out.println("Main Menu\nSelect an option using the corresponding number:\n" +
                 "1. Enter AuctionHouse data\n" +
                 "2. Enter Item data\n" +
                 "3. Provide Reporting Statistics\n" +
                 "4. Exit");
-        Character choice = scanner.nextLine().charAt(0);
+        char choice = input.nextLine().charAt(0);
 
-        switch(choice) {
-            case 1:
-                auctionHouse();
-                break;
-            case 2:
-                item();
-                break;
-            case 3:
-                reporting();
-                break;
-            case 4:
-                System.exit(0);
-                break;
-            default:
-                throw new IllegalArgumentException("That is not a valid option");
-
+        switch (choice) {
+            case 1 -> auctionHouse();
+            case 2 -> item();
+            case 3 -> reporting();
+            case 4 -> System.exit(0);
+            default -> throw new IllegalArgumentException("That is not a valid option");
         }
+    }
+
+    //Create new auction house using user inputs
+    public static void auctionHouse() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("What is the name of the Auction House?\nName: ");
+        new AuctionHouse(TitleCase.toTitleCase(input.nextLine()));
+
+        System.out.println("Would you like to add some items to the Auction House (y/n)?\n");
+        String answer = String.valueOf(input.nextLine().charAt(0));
+        if (answer.equalsIgnoreCase("y")) {
+            System.out.println("How many would you like to add?\n");
+            int amount = input.nextInt();
+
+            for(int i = 0; i < amount; i++) {
+
+            }
+        }
+    }
+
+    public static void item() {
+        Scanner input = new Scanner(System.in);
+
+    }
+
+    public static void reporting() {
+        Scanner input = new Scanner(System.in);
+
     }
 }
