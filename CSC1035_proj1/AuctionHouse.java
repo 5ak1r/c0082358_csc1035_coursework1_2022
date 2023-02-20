@@ -1,6 +1,5 @@
 package CSC1035_proj1;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AuctionHouse {
@@ -10,7 +9,7 @@ public class AuctionHouse {
     //Constructor
     public AuctionHouse(String name) {
         setName(name);
-        setItemsSold(new ArrayList<Item>());
+        setItemsSold(new ArrayList<>());
     }
 
     //Setters
