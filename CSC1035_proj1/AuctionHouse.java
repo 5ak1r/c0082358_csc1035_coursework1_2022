@@ -1,6 +1,5 @@
 package CSC1035_proj1;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AuctionHouse {
