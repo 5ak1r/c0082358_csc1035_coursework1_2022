@@ -1,6 +1,7 @@
 package CSC1035_proj1;
 
 import java.time.Year;
+import java.util.Objects;
 
 public class Item {
     //Making variables private
@@ -41,7 +42,7 @@ public class Item {
 
     public void setBuyerName(String buyer_name) throws Exception {
         //Verifies input for buyer_name; should be two words separated by a space (first name and last name)
-        if (!(buyer_name.contains(" "))) {
+        if (!(buyer_name.contains(" ")) || (buyer_name.equals("null"))) {
             throw new Exception("name");
         } else {
             this.buyer_name = TitleCase.toTitleCase(buyer_name);
