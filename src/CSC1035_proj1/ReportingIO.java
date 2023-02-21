@@ -44,7 +44,8 @@ public class ReportingIO {
             int amount = input.nextInt();
 
             for(int i = 0; i < amount; i++) {
-
+                System.out.println("Name of item: ");
+                String name = input.nextLine();
             }
         }
     }

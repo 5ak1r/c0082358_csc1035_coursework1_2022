@@ -28,7 +28,7 @@ public class Reporting {
     }
 
     //Returns the Item with the highest price ever recorded
-    public Item mostExpensive() {
+    public Item mostExpensive() throws Exception {
         //Temporary Item with 0 price to begin comparing
         Item highest_price = new Item(199999, "",0,2000,"");
 
