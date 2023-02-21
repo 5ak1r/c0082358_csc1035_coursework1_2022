@@ -31,11 +31,9 @@ public class Reporting {
     public Item mostExpensive() {
         //Temporary Item with 0 price to begin comparing
         Item highest_price = new Item(199999, "",0,2000,"");
-        float temp_price = 0;
 
         for (AuctionHouse ahs: getAuctionHouses()) {
-            if(ahs.highestPrice().getPriceSold() > temp_price) {
-                temp_price = ahs.highestPrice().getPriceSold();
+            if(ahs.highestPrice().getPriceSold() > highest_price.getPriceSold()) {
                 highest_price = ahs.highestPrice();
             }
         }
@@ -46,12 +44,10 @@ public class Reporting {
     public AuctionHouse highestAverage(int year) {
         //Temporary empty AuctionHouse to begin comparing
         AuctionHouse highest_average = new AuctionHouse("temp");
-        float temp_average = 0;
 
         for (AuctionHouse ahs: getAuctionHouses()) {
-            if(ahs.averagePrice(year) > temp_average) {
+            if(ahs.averagePrice(year) > highest_average.averagePrice(year)) {
                 highest_average = ahs;
-                temp_average = ahs.averagePrice(year);
             }
         }
         return highest_average;

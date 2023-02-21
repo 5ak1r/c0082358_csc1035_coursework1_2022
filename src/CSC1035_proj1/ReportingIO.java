@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 
 public class ReportingIO {
+    static Scanner input = new Scanner(System.in);
 
     //Calls the main menu every time a method has finished until the user tells the program to exit
-    public static void main() {
+    public static void main(String[] args) {
         while(true) {
             mainMenu();
         }
     }
 
     //Main menu
-    public static void mainMenu() {
-        Scanner input = new Scanner(System.in);
+    private static void mainMenu() {
         System.out.println("Main Menu\nSelect an option using the corresponding number:\n" +
                 "1. Enter AuctionHouse data\n" +
                 "2. Enter Item data\n" +
@@ -33,7 +33,6 @@ public class ReportingIO {
 
     //Create new auction house using user inputs
     public static void auctionHouse() {
-        Scanner input = new Scanner(System.in);
 
         System.out.println("What is the name of the Auction House?\nName: ");
         new AuctionHouse(TitleCase.toTitleCase(input.nextLine()));
@@ -51,12 +50,10 @@ public class ReportingIO {
     }
 
     public static void item() {
-        Scanner input = new Scanner(System.in);
 
     }
 
     public static void reporting() {
-        Scanner input = new Scanner(System.in);
 
     }
 }
