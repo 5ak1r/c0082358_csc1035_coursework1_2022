@@ -36,7 +36,7 @@ public class AuctionHouse {
     }
 
     //Returns the most expensive Item and the price it sold for
-    public Item highestPrice() {
+    public Item highestPrice() throws Exception {
         //Initiating variables that return name and price of most expensive item
         //Temporary Item with 0 price to begin comparison
         Item highest_item = new Item(199999, "",0,2000,"");

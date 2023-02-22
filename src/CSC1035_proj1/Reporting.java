@@ -21,7 +21,7 @@ public class Reporting {
     }
 
     //Adds a newly created auction house to the Reporting class
-    public void addAuctionHouse(AuctionHouse ah) {
+    public void addAuctionHouse(AuctionHouse ah) throws Exception {
         ArrayList<AuctionHouse> temp_list = new ArrayList<>(getAuctionHouses());
         temp_list.add(ah);
         setAuctionHouses(temp_list);
@@ -59,9 +59,7 @@ public class Reporting {
         ArrayList<Item> total_arraylist = new ArrayList<>();
 
         for (AuctionHouse ahs: getAuctionHouses()) {
-            for (Item item: ahs.priceGreater(price)) {
-                total_arraylist.add(item);
-            }
+            total_arraylist.addAll(ahs.priceGreater(price));
         }
         return total_arraylist;
     }

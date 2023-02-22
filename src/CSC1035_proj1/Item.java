@@ -53,7 +53,7 @@ public class Item {
         //Verifies input for price_sold; should be positive and only two decimal places - rounds down if otherwise
         //This is due to the possibility of accidentally typing more numbers than intended; if >5 would normally round
         //Up but more likely to be a typo
-        if (price_sold < 0) {
+        if (price_sold < (float) 0.01) {
             throw new Exception("price");
         } else {
             this.price_sold = (float) (Math.floor(price_sold*100)/100);
