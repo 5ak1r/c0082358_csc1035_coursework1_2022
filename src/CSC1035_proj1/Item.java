@@ -1,7 +1,6 @@
 package CSC1035_proj1;
 
 import java.time.Year;
-import java.util.Objects;
 
 public class Item {
     //Making variables private
@@ -20,6 +19,13 @@ public class Item {
         setPriceSold(price_sold);
         setYearSold(year_sold);
         setItemType(item_type);
+    }
+
+    //String Representation of Item
+    @Override
+    public String toString() {
+        return String.format("Item({0},{1},{2},{3},{4})",this.getLotNumber(), this.getBuyerName(), this.getPriceSold(),
+                this.getYearSold(), this.getItemType());
     }
 
     //Setters
@@ -93,21 +99,11 @@ public class Item {
                 }
             }*/
 
-        switch(item_type) {
-            case "f":
-            case "furniture":
-                this.item_type = "furniture";
-                break;
-            case "p":
-            case "painting":
-                this.item_type = "painting";
-                break;
-            case "s":
-            case "sculpture":
-                this.item_type = "sculpture";
-                break;
-            default:
-                throw new Exception("item type");
+        switch (item_type) {
+            case "f", "furniture" -> this.item_type = "furniture";
+            case "p", "painting" -> this.item_type = "painting";
+            case "s", "sculpture" -> this.item_type = "sculpture";
+            default -> throw new Exception("item type");
         }
     }
 

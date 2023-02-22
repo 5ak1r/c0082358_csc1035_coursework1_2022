@@ -91,7 +91,6 @@ public class ReportingIO {
                         System.out.println("Item Type: ");
                         item_type = input.nextLine();
                     }
-                    default -> System.out.println("Item successfully added.\n");
                 }
             }
         }
@@ -134,6 +133,5 @@ public class ReportingIO {
             }
             case '4' -> mainMenu();
         }
-
     }
 }

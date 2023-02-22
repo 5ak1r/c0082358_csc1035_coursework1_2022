@@ -12,6 +12,12 @@ public class AuctionHouse {
         setItemsSold(new ArrayList<>());
     }
 
+    //String Representation of AuctionHouse
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
     //Setters
     public void setName(String name) {
         this.name = TitleCase.toTitleCase(name);
