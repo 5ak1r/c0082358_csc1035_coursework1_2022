@@ -24,8 +24,8 @@ public class Item {
     //String Representation of Item
     @Override
     public String toString() {
-        return String.format("Item({0},{1},{2},{3},{4})",this.getLotNumber(), this.getBuyerName(), this.getPriceSold(),
-                this.getYearSold(), this.getItemType());
+        return String.format("Item("+this.getLotNumber()+", "+this.getBuyerName()+", "+this.getPriceSold()+", "+
+                this.getYearSold()+", "+this.getItemType()+")");
     }
 
     //Setters
@@ -59,7 +59,7 @@ public class Item {
         //Verifies input for price_sold; should be positive and only two decimal places - rounds down if otherwise
         //This is due to the possibility of accidentally typing more numbers than intended; if >5 would normally round
         //Up but more likely to be a typo
-        if (price_sold < (float) 0.01) {
+        if (price_sold < (float) 0) {
             throw new Exception("price");
         } else {
             this.price_sold = (float) (Math.floor(price_sold*100)/100);

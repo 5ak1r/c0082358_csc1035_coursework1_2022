@@ -8,6 +8,9 @@ public class ReportingIO {
     static Reporting report = new Reporting(new ArrayList<>());
     static Scanner input = new Scanner(System.in);
 
+    //Empty private constructor to prevent multiple instantiations of ReportingIO.
+    private ReportingIO() {};
+
     //Calls the main menu every time a method has finished until the user tells the program to exit
     public static void main(String[] args) throws Exception {
         while(true) {
@@ -50,11 +53,15 @@ public class ReportingIO {
 
             for(int i = 0; i < amount; i++) {
                 newAH.addItem(item());
+                System.out.println("\nItem successfully added to "+newAH.getName());
             }
         }
+        report.addAuctionHouse(newAH);
     }
 
+    //Allows the user to enter new item information and returns the item to be accessed by ReportingIO.auctionHouse()
     public static Item item() {
+        //Initiating invalid item values so that it collects user input immediately.
         int lot_number = 0;
         String buyer_name = "null";
         float price_sold = (float) -5.23;
@@ -64,15 +71,19 @@ public class ReportingIO {
         System.out.println("The program will now take in your inputs regarding information about the item.\n" +
                 "Any mistakes made will cause the program to ask about that input again.");
 
+        //Continues asking for a value until validation succeeds.
         while (true) {
             try {
                 return new Item(lot_number, buyer_name, price_sold, year_sold, item_type);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
                 switch (e.getMessage()) {
                     case "lot number" -> {
                         System.out.println("Lot number: ");
-                        lot_number = Integer.parseInt(input.nextLine());
+                        try {
+                            lot_number = Integer.parseInt(input.nextLine());
+                        } catch (NumberFormatException n){
+                            System.out.println("That is not an integer.");
+                        }
                     }
                     case "name" -> {
                         System.out.println("Buyer Full Name: ");
@@ -80,12 +91,19 @@ public class ReportingIO {
                     }
                     case "price" -> {
                         System.out.println("Price Sold: ");
-                        price_sold = Float.parseFloat(input.nextLine());
-                        System.out.println(price_sold);
+                        try {
+                            price_sold = Float.parseFloat(input.nextLine());
+                        } catch (NumberFormatException n) {
+                            System.out.println("That is not a float.");
+                        }
                     }
                     case "year" -> {
                         System.out.println("Year Sold: ");
-                        year_sold = Integer.parseInt(input.nextLine());
+                        try {
+                            year_sold = Integer.parseInt(input.nextLine());
+                        } catch (NumberFormatException n) {
+                            System.out.println("That is not an integer.");
+                        }
                     }
                     case "item type" -> {
                         System.out.println("Item Type: ");
@@ -118,13 +136,25 @@ public class ReportingIO {
                     }
                 }
             }
-            case '2' -> System.out.println(report.mostExpensive());
+            case '2' -> {
+                Item highest_price = report.mostExpensive();
+                if (highest_price.getBuyerName().equals("No Items")) {
+                    System.out.println("No Items have been added to the program yet.");
+                } else {
+                    System.out.println(highest_price);
+                }
+            }
             case '3' -> {
                 while (true) {
                     System.out.println("Price: ");
                     try {
-                        System.out.println(report.priceGreaterTotal(input.nextFloat()));
+                        ArrayList<Item> total_arraylist = report.priceGreaterTotal(input.nextFloat());
                         input.nextLine();
+                        if (total_arraylist.isEmpty()) {
+                            System.out.println("No Items have been added yet.");
+                        } else {
+                            System.out.println(total_arraylist);
+                        }
                         break;
                     } catch (Exception e) {
                         System.out.println("That is not a valid float.");
