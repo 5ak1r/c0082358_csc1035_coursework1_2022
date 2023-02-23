@@ -44,19 +44,36 @@ public class ReportingIO {
         System.out.println("What is the name of the Auction House?\nName: ");
         AuctionHouse newAH = new AuctionHouse(TitleCase.toTitleCase(input.nextLine()));
 
-        System.out.println("Would you like to add some items to "+newAH.getName()+" (y/n)?");
+        System.out.println("Would you like to add some items to " + newAH.getName() + " (y/n)?");
         String answer = String.valueOf(input.nextLine().charAt(0));
         if (answer.equalsIgnoreCase("y")) {
             System.out.println("How many would you like to add?");
             int amount = input.nextInt();
             input.nextLine();
 
-            for(int i = 0; i < amount; i++) {
-                newAH.addItem(item());
-                System.out.println("\nItem successfully added to "+newAH.getName());
+            for (int i = 0; i < amount; i++) {
+                System.out.println("Has the item already been recorded in the report (y/n)?");
+                if (input.nextLine().charAt(0) == 'y') {
+                    System.out.println("What is the lot number of the item: ");
+                    try {
+                        int lot_num = Integer.parseInt(input.nextLine());
+                        for (Item ite: report.getItems()) {
+                            if(ite.getLotNumber() == lot_num) {
+                                newAH.addItem(ite);
+                            }
+                        }
+                    } catch (Exception e) {
+                        //Would also add verification for integer entered being in valid range if I had more time
+                        System.out.println("That is not an integer.");
+                        i -= 1;
+                    }
+                } else {
+                    newAH.addItem(item());
+                    System.out.println("\nItem successfully added to " + newAH.getName());
+                }
             }
+            report.addAuctionHouse(newAH);
         }
-        report.addAuctionHouse(newAH);
     }
 
     //Allows the user to enter new item information and returns the item to be accessed by ReportingIO.auctionHouse()
@@ -74,7 +91,10 @@ public class ReportingIO {
         //Continues asking for a value until validation succeeds.
         while (true) {
             try {
-                return new Item(lot_number, buyer_name, price_sold, year_sold, item_type);
+                Item new_item = new Item(lot_number, buyer_name, price_sold, year_sold, item_type);
+                report.addItem(new_item);
+                System.out.println("Item successfully created.");
+                return new_item;
             } catch (Exception e) {
                 switch (e.getMessage()) {
                     case "lot number" -> {
@@ -139,7 +159,7 @@ public class ReportingIO {
             case '2' -> {
                 Item highest_price = report.mostExpensive();
                 if (highest_price.getBuyerName().equals("No Items")) {
-                    System.out.println("No Items have been added to the program yet.");
+                    System.out.println("No Items have been sold yet.");
                 } else {
                     System.out.println(highest_price);
                 }

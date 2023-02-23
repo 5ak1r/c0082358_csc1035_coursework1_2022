@@ -3,28 +3,52 @@ package CSC1035_proj1;
 import java.util.ArrayList;
 
 public class Reporting {
-    private ArrayList<AuctionHouse> AuctionHouses;
+    private ArrayList<AuctionHouse> AuctionHouses = new ArrayList<>();
+    private ArrayList<Item> Items = new ArrayList<>();
 
     //Setter
     public void setAuctionHouses(ArrayList<AuctionHouse> auction_houses) {
         this.AuctionHouses = auction_houses;
+    }
+    public void setItems(ArrayList<Item> items) {
+        this.Items = items;
     }
 
     //Getter
     public ArrayList<AuctionHouse> getAuctionHouses() {
         return this.AuctionHouses;
     }
+    public ArrayList<Item> getItems() {
+        return this.Items;
+    }
+
 
     //Constructor
     public Reporting(ArrayList<AuctionHouse> auction_houses) {
         setAuctionHouses(auction_houses);
     }
 
+    //addAuctionHouse and addItem could both be merged into the same method, would do this if I had more time.
     //Adds a newly created auction house to the Reporting class
     public void addAuctionHouse(AuctionHouse ah) {
-        ArrayList<AuctionHouse> temp_list = new ArrayList<>(getAuctionHouses());
+        ArrayList<AuctionHouse> temp_list = new ArrayList<>();
+        try {
+            temp_list = getAuctionHouses();
+        } catch(Exception ignored) {}
+
         temp_list.add(ah);
         setAuctionHouses(temp_list);
+    }
+
+    //Adds a newly created item to the Reporting class
+    public void addItem(Item new_item) {
+        ArrayList<Item> temp_list = new ArrayList<>();
+        try {
+            temp_list = getItems();
+        } catch(Exception ignored) {}
+
+        temp_list.add(new_item);
+        setItems(temp_list);
     }
 
     //Returns the Item with the highest price ever recorded
