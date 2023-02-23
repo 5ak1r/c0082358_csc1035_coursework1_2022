@@ -58,6 +58,7 @@ public class AuctionHouse {
 
     //Returns the average item price recorded by the auction house in the given year
     public float averagePrice(int year) {
+        float avg = 0;
         int counter = 0;
         float sum = 0;
 
@@ -68,7 +69,11 @@ public class AuctionHouse {
             }
         }
 
-        return(sum / counter);
+        try {
+            avg = Float.parseFloat(String.valueOf(sum / counter));
+        } catch(Exception ignored) {}
+
+        return avg;
     }
 
     //Returns a list of all items sold by the auction house with a price greater than a given amount of money

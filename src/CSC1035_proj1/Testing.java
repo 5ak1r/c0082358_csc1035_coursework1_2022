@@ -103,6 +103,19 @@ public class Testing {
     }
 
     public static void testReporting(ArrayList<AuctionHouse> test_auction_houses) {
+        Reporting test_report = new Reporting(test_auction_houses);
 
+        try {
+            //Should output "Item(100002, Denis Dysen, 425.34F, 2005, furniture)"
+            System.out.println(test_report.mostExpensive());
+
+            System.out.println(test_report.priceGreaterTotal(1.00F)); //Should output all items
+            System.out.println(test_report.priceGreaterTotal(400.00F)); //Should output test_item_1 only
+            System.out.println(test_report.priceGreaterTotal(34.00F)); //Should output 3 test items
+
+            System.out.println(test_report.highestAverage(2019)); //Should output "Auction House 1"
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

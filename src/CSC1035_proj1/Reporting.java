@@ -26,6 +26,12 @@ public class Reporting {
     //Constructor
     public Reporting(ArrayList<AuctionHouse> auction_houses) {
         setAuctionHouses(auction_houses);
+
+        for(AuctionHouse ahs: auction_houses) {
+            for(Item item_ahs: ahs.getItemsSold()) {
+                addItem(item_ahs);
+            }
+        }
     }
 
     //addAuctionHouse and addItem could both be merged into the same method, would do this if I had more time.
@@ -38,6 +44,10 @@ public class Reporting {
 
         temp_list.add(ah);
         setAuctionHouses(temp_list);
+
+        for(Item item_ah: ah.getItemsSold()) {
+            addItem(item_ah);
+        }
     }
 
     //Adds a newly created item to the Reporting class
@@ -66,10 +76,10 @@ public class Reporting {
     }
 
     //Returns the auction house with the largest average price for a given year
-    public AuctionHouse highestAverage(int year) {
+    public AuctionHouse highestAverage(int year) throws Exception {
         //Temporary empty AuctionHouse to begin comparing
         AuctionHouse highest_average = new AuctionHouse("No Auction Houses have been added yet");
-
+        highest_average.addItem(new Item(199999, "S A", 0.00F, year, "f"));
         for (AuctionHouse ahs: getAuctionHouses()) {
             if(ahs.averagePrice(year) > highest_average.averagePrice(year)) {
                 highest_average = ahs;
