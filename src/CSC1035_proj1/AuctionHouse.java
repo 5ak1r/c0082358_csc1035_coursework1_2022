@@ -45,7 +45,7 @@ public class AuctionHouse {
     public Item highestPrice() throws Exception {
         //Initiating variables that return name and price of most expensive item
         //Temporary Item with 0 price to begin comparison
-        Item highest_item = new Item(199999, "",0,2000,"");
+        Item highest_item = new Item(199999, "Test Item",0,2000,"p");
 
         for (Item price: getItemsSold()) {
             if (price.getPriceSold() > highest_item.getPriceSold()) {
