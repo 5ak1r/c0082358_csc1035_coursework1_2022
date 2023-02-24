@@ -4,6 +4,10 @@ package CSC1035_proj1;
 
 public final class TitleCase {
 
+    /**
+     * @param input String input
+     * @return String input but in Title Case
+     */
     public static String toTitleCase(String input) {
 
         StringBuilder titleCase = new StringBuilder(input.length());

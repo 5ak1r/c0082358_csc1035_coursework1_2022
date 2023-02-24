@@ -29,6 +29,12 @@ public class Item {
     }
 
     //Setters
+
+    /**
+     * Setter with verification
+     * @param lot_number Unique number identifier for each Item object
+     * @throws Exception Item verification
+     */
     public void setLotNumber(int lot_number) throws Exception {
         //Verifies input for lot_number; should be 6 digits starting with a 1
 
@@ -46,6 +52,11 @@ public class Item {
         }
     }
 
+    /**
+     * Setter with verification
+     * @param buyer_name Full name of the buyer who purchased the item
+     * @throws Exception Item verification
+     */
     public void setBuyerName(String buyer_name) throws Exception {
         //Verifies input for buyer_name; should be two words separated by a space (first name and last name)
         if (!(buyer_name.contains(" ")) || (buyer_name.equals("null"))) {
@@ -55,6 +66,11 @@ public class Item {
         }
     }
 
+    /**
+     * Setter with verification
+     * @param price_sold Price that the item sold for as a float
+     * @throws Exception Item verification
+     */
     public void setPriceSold(float price_sold) throws Exception {
         //Verifies input for price_sold; should be positive and only two decimal places - rounds down if otherwise
         //This is due to the possibility of accidentally typing more numbers than intended; if >5 would normally round
@@ -66,6 +82,11 @@ public class Item {
         }
     }
 
+    /**
+     * Setter with verification
+     * @param year_sold Year that the item was sold in
+     * @throws Exception Item verification
+     */
     public void setYearSold(int year_sold) throws Exception {
         //Verifies input for year_sold, should be greater than 1950 (this is the year I decided) and less than or
         //equal to the current year
@@ -77,6 +98,11 @@ public class Item {
         }
     }
 
+    /**
+     * Setter with verification
+     * @param item_type The type of item (furniture, sculpture, painting)
+     * @throws Exception Item verification
+     */
     public void setItemType(String item_type) throws Exception {
         //Verifies input for item_type; should be either 'f', 'p', 's' or the full words.
         //Previous strategy did not work as it creates more possible outputs for getItemType rather than just 3; new
@@ -108,22 +134,43 @@ public class Item {
     }
 
     //Getters
+
+    /**
+     * Getter
+     * @return Item object's lot number
+     */
     public int getLotNumber() {
         return this.lot_number;
     }
 
+    /**
+     * Getter
+     * @return Item object's lot number
+     */
     public String getBuyerName() {
         return this.buyer_name;
     }
 
+    /**
+     * Getter
+     * @return Item object's price sold
+     */
     public float getPriceSold(){
         return this.price_sold;
     }
 
+    /**
+     * Getter
+     * @return Item object's year sold
+     */
     public int getYearSold(){
         return this.year_sold;
     }
 
+    /**
+     * Getter
+     * @return Item object's item type
+     */
     public String getItemType(){
         return this.item_type;
     }
